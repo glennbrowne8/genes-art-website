@@ -459,14 +459,14 @@ body {
 }
 
 .btn-available {
-  background-color: #28a745;
-  color: white;
+  background-color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .btn-available:hover {
-  background-color: #218838;
+  background-color: #E8944C;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  box-shadow: 0 4px 12px rgba(244, 164, 96, 0.4);
 }
 
 .btn-secondary {
