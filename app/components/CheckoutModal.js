@@ -78,8 +78,10 @@ function CheckoutModalContent({ artwork, onClose }) {
         return
       }
 
-      // Redirect to Stripe Checkout
+      // Mark that we're navigating to Stripe
       if (data.url) {
+        // Set a flag in sessionStorage to detect when user returns
+        sessionStorage.setItem('stripeCheckoutInProgress', 'true')
         window.location.href = data.url
       }
     } catch (err) {
@@ -97,24 +99,26 @@ function CheckoutModalContent({ artwork, onClose }) {
     }
   }, [])
 
-  // Reset processing state when user returns from Stripe
+  // Detect if user returned from Stripe and force reload to reset state
   useEffect(() => {
-    // When user navigates back, reset the processing state
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        setIsProcessing(false)
-        setError(null)
+    const checkStripeReturn = () => {
+      const wasInCheckout = sessionStorage.getItem('stripeCheckoutInProgress')
+      if (wasInCheckout) {
+        // Clear the flag
+        sessionStorage.removeItem('stripeCheckoutInProgress')
+        // Force a full page reload to reset all state
+        window.location.reload()
       }
     }
 
-    document.addEventListener('visibilitychange', handleVisibilityChange)
-    window.addEventListener('pageshow', () => {
-      setIsProcessing(false)
-      setError(null)
-    })
+    // Check immediately on mount
+    checkStripeReturn()
+
+    // Also check on pageshow event (handles bfcache)
+    window.addEventListener('pageshow', checkStripeReturn)
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('pageshow', checkStripeReturn)
     }
   }, [])
 
