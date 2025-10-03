@@ -14,6 +14,14 @@ export default function RootLayout({ children }) {
         <meta httpEquiv="Expires" content="0" />
       </head>
       <body>
+        {/* Hidden form for Netlify Forms detection */}
+        <form name="contact" netlify="true" netlify-honeypot="bot-field" hidden>
+          <input type="text" name="name" />
+          <input type="email" name="email" />
+          <input type="tel" name="phone" />
+          <textarea name="message"></textarea>
+        </form>
+
         <script
           dangerouslySetInnerHTML={{
             __html: `

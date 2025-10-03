@@ -2,11 +2,9 @@
 
 import { useState } from 'react'
 import CheckoutModal from './CheckoutModal'
-import ContactModal from './ContactModal'
 
 export default function ArtworkActions({ artwork }) {
   const [showCheckout, setShowCheckout] = useState(false)
-  const [showContact, setShowContact] = useState(false)
 
   // If artwork is sold/unavailable
   if (!artwork.available) {
@@ -14,12 +12,6 @@ export default function ArtworkActions({ artwork }) {
       <div className="artwork-actions">
         <button className="btn-out-of-stock" disabled>
           Out of Stock
-        </button>
-        <button 
-          className="btn-secondary btn-inquire"
-          onClick={() => setShowContact(true)}
-        >
-          ✉️ Ask a Question
         </button>
       </div>
     )
@@ -35,12 +27,6 @@ export default function ArtworkActions({ artwork }) {
         >
           ✅ Available
         </button>
-        <button 
-          className="btn-secondary btn-inquire"
-          onClick={() => setShowContact(true)}
-        >
-          ✉️ Ask a Question
-        </button>
       </div>
 
       {/* Checkout Modal */}
@@ -48,14 +34,6 @@ export default function ArtworkActions({ artwork }) {
         <CheckoutModal 
           artwork={artwork} 
           onClose={() => setShowCheckout(false)} 
-        />
-      )}
-
-      {/* Contact Modal */}
-      {showContact && (
-        <ContactModal 
-          artwork={artwork} 
-          onClose={() => setShowContact(false)} 
         />
       )}
     </>
