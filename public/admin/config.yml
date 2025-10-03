@@ -1,0 +1,41 @@
+backend:
+  name: github
+  repo: glennbrowne8/genes-art-website  # Your actual GitHub username/repo
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "artwork"
+    label: "Artwork"
+    folder: "content/artwork"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "select", options: ["Corrugated Iron Paintings", "Bush Drawings", "Clay Art"]}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Price", name: "price", widget: "number"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Available", name: "available", widget: "boolean", default: true}
+      - {label: "Dimensions", name: "dimensions", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+      - {label: "Stripe Payment Link", name: "stripeLink", widget: "string", required: false, hint: "Paste your Stripe payment link here (e.g., https://buy.stripe.com/...) to enable Buy Now button"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "content/settings/general.json"
+        fields:
+          - {label: "Site Title", name: "title", widget: "string"}
+          - {label: "Artist Name", name: "artistName", widget: "string"}
+          - {label: "Phone", name: "phone", widget: "string"}
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "Location", name: "location", widget: "string"}
+          - {label: "About Text", name: "about", widget: "text"}
+          - {label: "Hero Headline", name: "heroHeadline", widget: "string"}
+          - {label: "Hero Subtext", name: "heroSubtext", widget: "string"}
