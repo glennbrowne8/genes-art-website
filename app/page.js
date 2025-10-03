@@ -68,7 +68,6 @@ export default function Home() {
           <div className="container">
             <h1>{settings.heroHeadline}</h1>
             <p>{settings.heroSubtext}</p>
-            <a href="#gallery" className="cta-button">View Gallery</a>
           </div>
         </section>
 
