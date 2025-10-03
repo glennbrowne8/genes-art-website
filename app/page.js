@@ -120,7 +120,15 @@ export default function Home() {
             <h2 className="section-title">About the Artist</h2>
             <div className="about-content">
               <div className="about-image">
-                Artist Photo
+                {settings.artistPhoto ? (
+                  <img 
+                    src={settings.artistPhoto} 
+                    alt={settings.artistName}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                ) : (
+                  'Artist Photo'
+                )}
               </div>
               <div className="about-text">
                 {settings.about.split('\n').map((paragraph, index) => (

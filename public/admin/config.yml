@@ -33,6 +33,7 @@ collections:
         fields:
           - {label: "Site Title", name: "title", widget: "string"}
           - {label: "Artist Name", name: "artistName", widget: "string"}
+          - {label: "Artist Photo", name: "artistPhoto", widget: "image", required: false, hint: "Upload a photo of the artist (recommended: square image, at least 400x400px)"}
           - {label: "Phone", name: "phone", widget: "string"}
           - {label: "Email", name: "email", widget: "string"}
           - {label: "Location", name: "location", widget: "string"}
