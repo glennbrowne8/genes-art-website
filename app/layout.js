@@ -1,5 +1,4 @@
 import './globals.css'
-import StripeReturnHandler from './components/StripeReturnHandler'
 
 export const metadata = {
   title: "Gene's Australian Heritage Art",
@@ -15,7 +14,6 @@ export default function RootLayout({ children }) {
         <meta httpEquiv="Expires" content="0" />
       </head>
       <body>
-        <StripeReturnHandler />
         <script
           dangerouslySetInnerHTML={{
             __html: `
