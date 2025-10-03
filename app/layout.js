@@ -17,6 +17,9 @@ export default function RootLayout({ children }) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
+              // Disable bfcache by adding unload listener
+              window.addEventListener('unload', function() {});
+              
               if (window.netlifyIdentity) {
                 window.netlifyIdentity.on("init", user => {
                   if (!user) {
