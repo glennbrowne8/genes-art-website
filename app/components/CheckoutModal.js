@@ -97,6 +97,27 @@ function CheckoutModalContent({ artwork, onClose }) {
     }
   }, [])
 
+  // Reset processing state when user returns from Stripe
+  useEffect(() => {
+    // When user navigates back, reset the processing state
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        setIsProcessing(false)
+        setError(null)
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    window.addEventListener('pageshow', () => {
+      setIsProcessing(false)
+      setError(null)
+    })
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [])
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content checkout-modal" onClick={(e) => e.stopPropagation()}>
