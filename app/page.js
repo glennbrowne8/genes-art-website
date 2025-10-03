@@ -12,6 +12,36 @@ function getSettings() {
   return JSON.parse(settingsData)
 }
 
+// Function to get page content
+function getPageContent() {
+  const contentPath = path.join(process.cwd(), 'content/settings/page-content.json')
+  try {
+    const contentData = fs.readFileSync(contentPath, 'utf-8')
+    return JSON.parse(contentData)
+  } catch (error) {
+    // Return defaults if file doesn't exist yet
+    return {
+      contact: {
+        title: "Get In Touch",
+        commissionHeading: "Commission Work",
+        commissionText: "Custom pieces available! I love creating personalized artwork that captures your vision of Australian heritage. Contact me to discuss your ideas.",
+        shippingHeading: "Delivery & Shipping",
+        shippingText: "Local delivery available. Interstate shipping can be arranged for all artwork. Contact me for a quote."
+      },
+      gallery: {
+        title: "Gallery",
+        emptyMessage: "No artwork available yet. Login to the admin panel to add your first piece!"
+      },
+      about: {
+        title: "About the Artist"
+      },
+      footer: {
+        text: "All rights reserved. | Celebrating Australian culture through authentic artwork"
+      }
+    }
+  }
+}
+
 // Function to get all artwork
 function getArtwork() {
   const artworkDir = path.join(process.cwd(), 'content/artwork')
@@ -41,6 +71,7 @@ function getArtwork() {
 
 export default function Home() {
   const settings = getSettings()
+  const pageContent = getPageContent()
   const artwork = getArtwork()
   
   return (
@@ -74,12 +105,12 @@ export default function Home() {
         {/* Gallery Section */}
         <section id="gallery" className="section">
           <div className="container">
-            <h2 className="section-title">Gallery</h2>
+            <h2 className="section-title">{pageContent.gallery.title}</h2>
             
             <div className="gallery-grid">
               {artwork.length === 0 ? (
                 <p style={{ textAlign: 'center', gridColumn: '1 / -1', fontSize: '1.2rem', color: '#666' }}>
-                  No artwork available yet. Login to the admin panel to add your first piece!
+                  {pageContent.gallery.emptyMessage}
                 </p>
               ) : (
                 artwork.map((piece, index) => (
@@ -117,7 +148,7 @@ export default function Home() {
         {/* About Section */}
         <section id="about" className="section">
           <div className="container">
-            <h2 className="section-title">About the Artist</h2>
+            <h2 className="section-title">{pageContent.about.title}</h2>
             <div className="about-content">
               <div className="about-image">
                 {settings.artistPhoto ? (
@@ -142,7 +173,7 @@ export default function Home() {
         {/* Contact Section */}
         <section id="contact" className="section contact">
           <div className="container">
-            <h2 className="section-title">Get In Touch</h2>
+            <h2 className="section-title">{pageContent.contact.title}</h2>
             <div className="contact-content">
               <div className="contact-info">
                 <h3>Contact Information</h3>
@@ -151,11 +182,11 @@ export default function Home() {
                 <p><strong>Email:</strong> {settings.email}</p>
                 <p><strong>Location:</strong> {settings.location}</p>
                 
-                <h3 style={{ marginTop: '2rem' }}>Commission Work</h3>
-                <p>Custom pieces available! I love creating personalized artwork that captures your vision of Australian heritage. Contact me to discuss your ideas.</p>
+                <h3 style={{ marginTop: '2rem' }}>{pageContent.contact.commissionHeading}</h3>
+                <p>{pageContent.contact.commissionText}</p>
                 
-                <h3 style={{ marginTop: '2rem' }}>Delivery & Shipping</h3>
-                <p>Local delivery available. Interstate shipping can be arranged for all artwork. Contact me for a quote.</p>
+                <h3 style={{ marginTop: '2rem' }}>{pageContent.contact.shippingHeading}</h3>
+                <p>{pageContent.contact.shippingText}</p>
               </div>
               
               <ContactForm />
@@ -167,7 +198,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2025 {settings.title}. All rights reserved. | Celebrating Australian culture through authentic artwork</p>
+          <p>&copy; 2025 {settings.title}. {pageContent.footer.text}</p>
         </div>
       </footer>
     </>

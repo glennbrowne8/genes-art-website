@@ -40,3 +40,36 @@ collections:
           - {label: "About Text", name: "about", widget: "text"}
           - {label: "Hero Headline", name: "heroHeadline", widget: "string"}
           - {label: "Hero Subtext", name: "heroSubtext", widget: "string"}
+      
+      - name: "content"
+        label: "Page Content"
+        file: "content/settings/page-content.json"
+        fields:
+          - label: "Contact Page"
+            name: "contact"
+            widget: "object"
+            fields:
+              - {label: "Section Title", name: "title", widget: "string", default: "Get In Touch"}
+              - {label: "Commission Work Heading", name: "commissionHeading", widget: "string", default: "Commission Work"}
+              - {label: "Commission Work Text", name: "commissionText", widget: "text", default: "Custom pieces available! I love creating personalized artwork that captures your vision of Australian heritage. Contact me to discuss your ideas."}
+              - {label: "Delivery & Shipping Heading", name: "shippingHeading", widget: "string", default: "Delivery & Shipping"}
+              - {label: "Delivery & Shipping Text", name: "shippingText", widget: "text", default: "Local delivery available. Interstate shipping can be arranged for all artwork. Contact me for a quote."}
+          
+          - label: "Gallery Page"
+            name: "gallery"
+            widget: "object"
+            fields:
+              - {label: "Section Title", name: "title", widget: "string", default: "Gallery"}
+              - {label: "Empty Gallery Message", name: "emptyMessage", widget: "text", default: "No artwork available yet. Login to the admin panel to add your first piece!"}
+          
+          - label: "About Section"
+            name: "about"
+            widget: "object"
+            fields:
+              - {label: "Section Title", name: "title", widget: "string", default: "About the Artist"}
+          
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - {label: "Footer Text", name: "text", widget: "string", default: "All rights reserved. | Celebrating Australian culture through authentic artwork"}
