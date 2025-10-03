@@ -19,33 +19,30 @@ export default function ContactForm() {
     })
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus(null)
 
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': 'contact',
-          ...formState
-        }).toString()
-      })
+    // Create FormData object
+    const myForm = e.target
+    const formData = new FormData(myForm)
 
-      if (response.ok) {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => {
         setSubmitStatus('success')
         setFormState({ name: '', email: '', phone: '', message: '' })
-      } else {
+        setIsSubmitting(false)
+      })
+      .catch((error) => {
+        console.error('Form submission error:', error)
         setSubmitStatus('error')
-      }
-    } catch (error) {
-      console.error('Form submission error:', error)
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-    }
+        setIsSubmitting(false)
+      })
   }
 
   return (
