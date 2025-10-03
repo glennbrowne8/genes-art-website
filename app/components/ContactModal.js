@@ -157,17 +157,20 @@ function ContactModalContent({ artwork, onClose }) {
 
 export default function ContactModal({ artwork, onClose }) {
   const [mounted, setMounted] = useState(false)
+  const [portalTarget, setPortalTarget] = useState(null)
 
   useEffect(() => {
     setMounted(true)
+    // Ensure we have a valid DOM element to portal into
+    setPortalTarget(document.body)
   }, [])
 
-  // Only render portal on client side after mount
-  if (!mounted) return null
+  // Only render portal on client side after mount and when we have a target
+  if (!mounted || !portalTarget) return null
 
   // Render modal using portal to document.body
   return createPortal(
     <ContactModalContent artwork={artwork} onClose={onClose} />,
-    document.body
+    portalTarget
   )
 }
