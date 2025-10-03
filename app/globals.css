@@ -460,7 +460,7 @@ body {
 
 .btn-available {
   background-color: var(--color-accent);
-  color: var(--color-primary);
+  color: white;
 }
 
 .btn-available:hover {
