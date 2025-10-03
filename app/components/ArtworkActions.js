@@ -25,7 +25,7 @@ export default function ArtworkActions({ artwork }) {
           className="btn-primary btn-available"
           onClick={() => setShowCheckout(true)}
         >
-          ✅ Available
+          Available
         </button>
       </div>
 
