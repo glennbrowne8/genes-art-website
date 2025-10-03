@@ -78,10 +78,8 @@ function CheckoutModalContent({ artwork, onClose }) {
         return
       }
 
-      // Mark that we're navigating to Stripe
+      // Redirect to Stripe Checkout
       if (data.url) {
-        // Set a flag in sessionStorage to detect when user returns
-        sessionStorage.setItem('stripeCheckoutInProgress', 'true')
         window.location.href = data.url
       }
     } catch (err) {
@@ -96,29 +94,6 @@ function CheckoutModalContent({ artwork, onClose }) {
     document.body.style.overflow = 'hidden'
     return () => {
       document.body.style.overflow = 'unset'
-    }
-  }, [])
-
-  // Detect if user returned from Stripe and force reload to reset state
-  useEffect(() => {
-    const checkStripeReturn = () => {
-      const wasInCheckout = sessionStorage.getItem('stripeCheckoutInProgress')
-      if (wasInCheckout) {
-        // Clear the flag
-        sessionStorage.removeItem('stripeCheckoutInProgress')
-        // Force a full page reload to reset all state
-        window.location.reload()
-      }
-    }
-
-    // Check immediately on mount
-    checkStripeReturn()
-
-    // Also check on pageshow event (handles bfcache)
-    window.addEventListener('pageshow', checkStripeReturn)
-
-    return () => {
-      window.removeEventListener('pageshow', checkStripeReturn)
     }
   }, [])
 
