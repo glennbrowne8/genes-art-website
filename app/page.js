@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import Image from 'next/image'
 import ArtworkActions from './components/ArtworkActions'
 import ContactForm from './components/ContactForm'
+import ImageZoom from './components/ImageZoom'
 
 // Function to get site settings
 function getSettings() {
@@ -117,11 +118,7 @@ export default function Home() {
                   <article key={index} className="artwork-card">
                     <div className="artwork-image">
                       {piece.image ? (
-                        <img 
-                          src={piece.image} 
-                          alt={piece.title}
-                          loading="lazy"
-                        />
+                        <ImageZoom src={piece.image} alt={piece.title} />
                       ) : (
                         <div className="placeholder-image">No Image</div>
                       )}
