@@ -130,6 +130,9 @@ export default function Home() {
                       {piece.dimensions && (
                         <p className="artwork-dimensions">Dimensions: {piece.dimensions}</p>
                       )}
+                      {piece.weight && (
+                        <p className="artwork-weight">Weight: {piece.weight} kg</p>
+                      )}
                       <div className="artwork-details">
                         <span className="artwork-price">${piece.price} AUD</span>
                       </div>

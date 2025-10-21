@@ -34,6 +34,7 @@ collections:
       - {label: "Image", name: "image", widget: "image"}
       - {label: "Available", name: "available", widget: "boolean", default: true}
       - {label: "Dimensions", name: "dimensions", widget: "string", required: false}
+      - {label: "Weight (kg)", name: "weight", widget: "number", required: false, min: 0, step: 0.1, hint: "Weight in kilograms (e.g., 2.5 or 0.8)"}
       - {label: "Featured", name: "featured", widget: "boolean", default: false}
       - {label: "Stripe Payment Link", name: "stripeLink", widget: "string", required: false, hint: "Paste your Stripe payment link here (e.g., https://buy.stripe.com/...) to enable Buy Now button"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
