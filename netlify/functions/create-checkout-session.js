@@ -22,6 +22,8 @@ exports.handler = async (event, context) => {
       shippingOption,
       shippingPrice,
       shippingLabel,
+      includeInsurance,
+      insurancePrice,
     } = JSON.parse(event.body)
 
     // Validate required fields
@@ -87,12 +89,30 @@ exports.handler = async (event, context) => {
               },
             ]
           : []),
+        // Add shipping insurance as a line item if selected
+        ...(includeInsurance && insurancePrice > 0
+          ? [
+              {
+                price_data: {
+                  currency: 'aud',
+                  product_data: {
+                    name: '📦 Shipping Insurance',
+                    description: `Protects ${artworkTitle} during transit. Covers loss or damage up to full value.`,
+                  },
+                  unit_amount: insurancePrice,
+                },
+                quantity: 1,
+              },
+            ]
+          : []),
       ],
       metadata: {
         artworkId: artworkId,
         artworkTitle: artworkTitle,
         shippingOption: shippingOption,
         shippingLabel: shippingLabel,
+        includeInsurance: includeInsurance ? 'yes' : 'no',
+        insuranceAmount: includeInsurance ? (insurancePrice / 100).toFixed(2) : '0',
       },
       success_url: `${siteUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/?canceled=true`,

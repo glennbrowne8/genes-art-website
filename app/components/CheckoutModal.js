@@ -37,13 +37,20 @@ const SHIPPING_OPTIONS = [
 
 function CheckoutModalContent({ artwork, onClose }) {
   const [selectedShipping, setSelectedShipping] = useState('pickup')
+  const [includeInsurance, setIncludeInsurance] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [error, setError] = useState(null)
 
   const selectedOption = SHIPPING_OPTIONS.find(opt => opt.id === selectedShipping)
   const artworkPrice = Math.round(artwork.price * 100) // Convert to cents
   const shippingPrice = selectedOption.price
-  const totalPrice = artworkPrice + shippingPrice
+  
+  // Calculate insurance: 10% of artwork price OR $15 minimum
+  const insurancePrice = includeInsurance 
+    ? Math.max(Math.round(artworkPrice * 0.10), 1500) // $15 minimum
+    : 0
+  
+  const totalPrice = artworkPrice + shippingPrice + insurancePrice
 
   const formatPrice = (cents) => {
     return `$${(cents / 100).toFixed(2)}`
@@ -67,6 +74,8 @@ function CheckoutModalContent({ artwork, onClose }) {
           shippingOption: selectedShipping,
           shippingPrice: shippingPrice,
           shippingLabel: selectedOption.label,
+          includeInsurance: includeInsurance,
+          insurancePrice: insurancePrice,
         }),
       })
 
@@ -149,6 +158,30 @@ function CheckoutModalContent({ artwork, onClose }) {
           </div>
         </div>
 
+        {/* Shipping Insurance */}
+        <div className="checkout-section">
+          <div className="insurance-option-wrapper">
+            <label className="insurance-option-label">
+              <input
+                type="checkbox"
+                checked={includeInsurance}
+                onChange={(e) => setIncludeInsurance(e.target.checked)}
+                className="insurance-checkbox"
+              />
+              <div className="insurance-details">
+                <div className="insurance-header">
+                  <span className="insurance-title">📦 Add Shipping Insurance</span>
+                  <span className="insurance-price">{formatPrice(Math.max(Math.round(artworkPrice * 0.10), 1500))}</span>
+                </div>
+                <p className="insurance-description">
+                  Protect your artwork during transit. Covers loss or damage up to full value.
+                  {selectedShipping === 'pickup' && ' (Not needed for pickup)'}
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+
         {/* Price Breakdown */}
         <div className="checkout-section">
           <div className="price-breakdown">
@@ -160,6 +193,12 @@ function CheckoutModalContent({ artwork, onClose }) {
               <span>Delivery</span>
               <span>{formatPrice(shippingPrice)} AUD</span>
             </div>
+            {includeInsurance && (
+              <div className="price-row">
+                <span>Shipping Insurance</span>
+                <span>{formatPrice(insurancePrice)} AUD</span>
+              </div>
+            )}
             <div className="price-row price-total">
               <span>Total</span>
               <span>{formatPrice(totalPrice)} AUD</span>
