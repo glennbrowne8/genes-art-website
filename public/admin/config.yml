@@ -74,7 +74,7 @@ collections:
             hint: "Enable this when you're away - shows a friendly message to customers"
             fields:
               - {label: "Enable Holiday Mode", name: "enabled", widget: "boolean", default: false, hint: "Turn ON when going on holidays/leave"}
-              - {label: "Return Date (YYYY-MM-DD)", name: "returnDate", widget: "string", required: false, pattern: ['^$|^\\d{4}-\\d{2}-\\d{2}$', 'Must be in format: YYYY-MM-DD (e.g., 2025-12-25) or leave empty'], hint: "Enter date in format: YYYY-MM-DD (e.g., 2025-12-25). Leave empty for 'until further notice'"}
+              - {label: "Return Date (DD-MM-YYYY)", name: "returnDate", widget: "string", required: false, hint: "Enter date in Australian format: DD-MM-YYYY (e.g., 25-12-2025). Leave empty for 'until further notice'"}
               - {label: "Custom Message", name: "message", widget: "text", required: false, default: "G'day! I'm currently away on leave. The gallery is still here for you to browse, but I'm not taking new orders at the moment.", hint: "Leave empty to use the default message"}
       
       - name: "content"

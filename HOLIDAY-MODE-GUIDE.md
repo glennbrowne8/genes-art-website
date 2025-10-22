@@ -17,7 +17,7 @@ Holiday Mode is a simple feature that lets you temporarily pause new orders when
 
 ### For You:
 - **One click to enable** - Just toggle ON in admin panel
-- **Set return date** - Optional, just type it in (or leave empty for "until further notice")
+- **Set return date** - Optional, just type it in Australian format (or leave empty)
 - **Custom message** - Write your own or use the default Australian-themed one
 - **Easy to disable** - Just toggle OFF when you're back
 
@@ -42,7 +42,7 @@ Holiday Mode is a simple feature that lets you temporarily pause new orders when
 ```
 Holiday Mode
 ├─ Enable Holiday Mode: [OFF/ON toggle]
-├─ Return Date (YYYY-MM-DD): [Text field]
+├─ Return Date (DD-MM-YYYY): [Text field]
 └─ Custom Message: [Text box]
 ```
 
@@ -52,11 +52,12 @@ Holiday Mode
 - Click the toggle to turn it **ON** (it will turn blue)
 
 **B. Return Date** (Optional)
-- Type the date in this format: **YYYY-MM-DD**
+- Type the date in **Australian format: DD-MM-YYYY**
 - Examples:
-  - Christmas Day 2025: `2025-12-25`
-  - New Year's Day 2026: `2026-01-01`
-  - November 20, 2025: `2025-11-20`
+  - Christmas Day 2025: `25-12-2025`
+  - New Year's Day 2026: `01-01-2026`
+  - November 20, 2025: `20-11-2025`
+  - Australia Day 2026: `26-01-2026`
 - OR leave it empty if you're not sure when you'll be back
 
 **C. Custom Message** (Optional)
@@ -88,22 +89,25 @@ Super simple:
 
 ---
 
-## 📅 Date Format Examples
+## 📅 Date Format Examples (Australian Format)
 
-When entering the return date, use **YYYY-MM-DD** format:
+When entering the return date, use **DD-MM-YYYY** format:
 
 | What You Want | Type This |
 |---------------|-----------|
-| December 25, 2025 | `2025-12-25` |
-| January 1, 2026 | `2026-01-01` |
-| March 15, 2025 | `2025-03-15` |
-| June 30, 2026 | `2026-06-30` |
+| Christmas Day 2025 | `25-12-2025` |
+| New Year's Day 2026 | `01-01-2026` |
+| Australia Day 2026 | `26-01-2026` |
+| Melbourne Cup Day 2025 | `04-11-2025` |
+| Easter Monday 2026 | `06-04-2026` |
 
 **Remember:**
-- Year first (4 digits)
+- Day first (2 digits)
 - Then month (2 digits)
-- Then day (2 digits)
+- Then year (4 digits)
 - Separated by dashes `-`
+
+**This is the normal Australian date format you're used to!** 🇦🇺
 
 ---
 
@@ -123,13 +127,13 @@ When entering the return date, use **YYYY-MM-DD** format:
 
 ### Good Custom Messages:
 ```
-"Taking a well-deserved break! Back on December 25th and 
+"Taking a well-deserved break! Back on 25th December and 
 ready to create more Aussie artwork. Feel free to browse 
 and I'll respond to all enquiries when I return."
 
 "G'day! Off on a painting expedition in the outback. 
 Gallery's open for browsing, but I'll be back to take 
-orders from January 5th. Cheers!"
+orders from 5th January. Cheers!"
 
 "Currently away from the workshop. Browse the collection 
 and drop me a line - I'll get back to you soon!"
@@ -155,10 +159,13 @@ A: Yes! Log in from your phone/tablet, edit the date, and publish.
 A: Leave the "Return Date" field empty. The banner will say you're away without a specific return date.
 
 **Q: What's the date format again?**
-A: **YYYY-MM-DD** - For example: 2025-12-25 for Christmas Day 2025
+A: **DD-MM-YYYY** (Australian format) - For example: `25-12-2025` for Christmas Day 2025
+
+**Q: How will the date appear on the website?**
+A: It will show in nice readable format like "Monday, 25 December 2025"
 
 **Q: What if I type the date wrong?**
-A: The system will tell you if the format is wrong. Just fix it and try again.
+A: Just check the format is DD-MM-YYYY with dashes. If it's wrong, fix it and try again.
 
 ---
 
@@ -170,8 +177,8 @@ A: The system will tell you if the format is wrong. Just fix it and try again.
 2. Site Settings → General Settings
 3. Holiday Mode → Expand section
 4. Toggle "Enable" to ON
-5. (Optional) Type return date: YYYY-MM-DD
-   Example: 2025-12-25
+5. (Optional) Type return date: DD-MM-YYYY
+   Example: 25-12-2025
 6. (Optional) Write custom message
 7. Click "Publish"
 8. Wait 2-3 minutes
@@ -191,20 +198,20 @@ A: The system will tell you if the format is wrong. Just fix it and try again.
 
 ## 🎯 Real Example
 
-Let's say you're going on holidays from **December 20** to **January 5**:
+Let's say you're going on holidays from **20th December** to **5th January**:
 
-**December 18:**
+**18th December:**
 1. Enable Holiday Mode: **ON**
-2. Return Date: `2026-01-05`
-3. Custom Message: "Taking a summer break! Gallery's open for browsing. I'll be back on January 5th ready to take orders. Have a great Christmas!"
+2. Return Date: `05-01-2026`
+3. Custom Message: "Taking a summer break! Gallery's open for browsing. I'll be back on 5th January ready to take orders. Have a great Christmas!"
 4. Click Publish
 
 **While Away:**
 - Relax! Customers see your message
 - They can browse but can't order
-- They know you're back January 5th
+- They see: "Expected return: Monday, 5 January 2026"
 
-**January 5:**
+**5th January:**
 1. Enable Holiday Mode: **OFF**
 2. Click Publish
 3. You're back in business! 🎨
@@ -212,5 +219,7 @@ Let's say you're going on holidays from **December 20** to **January 5**:
 ---
 
 **Remember:** Holiday Mode is about taking care of yourself while still being professional with your customers. Use it whenever you need a break - that's what it's there for!
+
+The date format is just the normal Australian way you write dates: **25-12-2025** for Christmas! 🇦🇺
 
 Enjoy your time off! 🏖️🎨

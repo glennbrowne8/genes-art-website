@@ -10,18 +10,34 @@ export default function HolidayBanner({ settings }) {
     return null;
   }
 
-  // Format return date if provided
+  // Format return date if provided (expects DD-MM-YYYY format)
   const formatReturnDate = (dateString) => {
     if (!dateString) return null;
     
-    const date = new Date(dateString);
-    const options = { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    };
-    return date.toLocaleDateString('en-AU', options);
+    try {
+      // Parse DD-MM-YYYY format
+      const parts = dateString.split('-');
+      if (parts.length !== 3) return null;
+      
+      const day = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10) - 1; // JavaScript months are 0-indexed
+      const year = parseInt(parts[2], 10);
+      
+      const date = new Date(year, month, day);
+      
+      // Check if date is valid
+      if (isNaN(date.getTime())) return null;
+      
+      const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      };
+      return date.toLocaleDateString('en-AU', options);
+    } catch (error) {
+      return null;
+    }
   };
 
   const returnDate = holidayMode.returnDate ? formatReturnDate(holidayMode.returnDate) : null;
