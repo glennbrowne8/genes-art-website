@@ -88,6 +88,7 @@ export default function Home() {
                 <li><a href="#about">About</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="/returns-refunds">Returns Policy</a></li>
               </ul>
             </nav>
           </div>
@@ -199,6 +200,9 @@ export default function Home() {
       <footer className="footer">
         <div className="container">
           <p>&copy; 2025 {settings.title}. {pageContent.footer.text}</p>
+          <p style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
+            Returns accepted within 7 days for damaged/defective items. <a href="/returns-refunds" style={{ color: 'inherit', textDecoration: 'underline' }}>View Full Returns Policy</a>
+          </p>
         </div>
       </footer>
     </>
