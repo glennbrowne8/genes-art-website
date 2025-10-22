@@ -17,7 +17,7 @@ Holiday Mode is a simple feature that lets you temporarily pause new orders when
 
 ### For You:
 - **One click to enable** - Just toggle ON in admin panel
-- **Set return date** - Optional, or leave empty for "until further notice"
+- **Set return date** - Optional, just type it in (or leave empty for "until further notice")
 - **Custom message** - Write your own or use the default Australian-themed one
 - **Easy to disable** - Just toggle OFF when you're back
 
@@ -42,7 +42,7 @@ Holiday Mode is a simple feature that lets you temporarily pause new orders when
 ```
 Holiday Mode
 ├─ Enable Holiday Mode: [OFF/ON toggle]
-├─ Return Date: [Calendar picker]
+├─ Return Date (YYYY-MM-DD): [Text field]
 └─ Custom Message: [Text box]
 ```
 
@@ -52,15 +52,18 @@ Holiday Mode
 - Click the toggle to turn it **ON** (it will turn blue)
 
 **B. Return Date** (Optional)
-- Click the calendar icon
-- Select the date you'll be back
-- OR leave it empty if you're not sure yet
+- Type the date in this format: **YYYY-MM-DD**
+- Examples:
+  - Christmas Day 2025: `2025-12-25`
+  - New Year's Day 2026: `2026-01-01`
+  - November 20, 2025: `2025-11-20`
+- OR leave it empty if you're not sure when you'll be back
 
 **C. Custom Message** (Optional)
 - The default message is:
   > "G'day! I'm currently away on leave. The gallery is still here for you to browse, but I'm not taking new orders at the moment."
 - You can replace this with your own message like:
-  > "Taking a short break to recharge! Browse the gallery and I'll be back on [date] to take orders."
+  > "Taking a short break to recharge! Browse the gallery and I'll be back soon."
 - OR leave it empty to use the default
 
 ### 5. Publish Your Changes
@@ -85,6 +88,25 @@ Super simple:
 
 ---
 
+## 📅 Date Format Examples
+
+When entering the return date, use **YYYY-MM-DD** format:
+
+| What You Want | Type This |
+|---------------|-----------|
+| December 25, 2025 | `2025-12-25` |
+| January 1, 2026 | `2026-01-01` |
+| March 15, 2025 | `2025-03-15` |
+| June 30, 2026 | `2026-06-30` |
+
+**Remember:**
+- Year first (4 digits)
+- Then month (2 digits)
+- Then day (2 digits)
+- Separated by dashes `-`
+
+---
+
 ## 💡 Tips and Best Practices
 
 ### When to Use Holiday Mode:
@@ -101,16 +123,16 @@ Super simple:
 
 ### Good Custom Messages:
 ```
-"Taking a well-deserved break! Back on [date] and 
-ready to create more Aussie artwork. Feel free to 
-browse and I'll respond to all enquiries when I return."
+"Taking a well-deserved break! Back on December 25th and 
+ready to create more Aussie artwork. Feel free to browse 
+and I'll respond to all enquiries when I return."
 
 "G'day! Off on a painting expedition in the outback. 
 Gallery's open for browsing, but I'll be back to take 
-orders from [date]. Cheers!"
+orders from January 5th. Cheers!"
 
 "Currently away from the workshop. Browse the collection 
-and drop me a line - I'll get back to you when I return!"
+and drop me a line - I'll get back to you soon!"
 ```
 
 ---
@@ -132,6 +154,12 @@ A: Yes! Log in from your phone/tablet, edit the date, and publish.
 **Q: What if I don't know when I'll be back?**
 A: Leave the "Return Date" field empty. The banner will say you're away without a specific return date.
 
+**Q: What's the date format again?**
+A: **YYYY-MM-DD** - For example: 2025-12-25 for Christmas Day 2025
+
+**Q: What if I type the date wrong?**
+A: The system will tell you if the format is wrong. Just fix it and try again.
+
 ---
 
 ## 📋 Quick Reference Card
@@ -142,7 +170,8 @@ A: Leave the "Return Date" field empty. The banner will say you're away without 
 2. Site Settings → General Settings
 3. Holiday Mode → Expand section
 4. Toggle "Enable" to ON
-5. (Optional) Set return date
+5. (Optional) Type return date: YYYY-MM-DD
+   Example: 2025-12-25
 6. (Optional) Write custom message
 7. Click "Publish"
 8. Wait 2-3 minutes
@@ -157,6 +186,28 @@ A: Leave the "Return Date" field empty. The banner will say you're away without 
 5. Click "Publish"
 6. Wait 2-3 minutes
 ```
+
+---
+
+## 🎯 Real Example
+
+Let's say you're going on holidays from **December 20** to **January 5**:
+
+**December 18:**
+1. Enable Holiday Mode: **ON**
+2. Return Date: `2026-01-05`
+3. Custom Message: "Taking a summer break! Gallery's open for browsing. I'll be back on January 5th ready to take orders. Have a great Christmas!"
+4. Click Publish
+
+**While Away:**
+- Relax! Customers see your message
+- They can browse but can't order
+- They know you're back January 5th
+
+**January 5:**
+1. Enable Holiday Mode: **OFF**
+2. Click Publish
+3. You're back in business! 🎨
 
 ---
 
