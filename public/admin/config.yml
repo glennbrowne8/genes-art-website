@@ -7,6 +7,17 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  # Pages Collection (for Return Policy, etc.)
+  - name: "pages"
+    label: "Pages"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+
   # NEW: Category Management Collection
   - name: "categories"
     label: "Artwork Categories"
