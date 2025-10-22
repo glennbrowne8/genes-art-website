@@ -5,6 +5,7 @@ import Image from 'next/image'
 import ArtworkActions from './components/ArtworkActions'
 import ContactForm from './components/ContactForm'
 import ImageZoom from './components/ImageZoom'
+import HolidayBanner from './components/HolidayBanner'
 
 // Function to get site settings
 function getSettings() {
@@ -75,8 +76,14 @@ export default function Home() {
   const pageContent = getPageContent()
   const artwork = getArtwork()
   
+  // Check if holiday mode is enabled
+  const isHolidayMode = settings.holidayMode?.enabled || false
+  
   return (
     <>
+      {/* Holiday Banner - appears at top when enabled */}
+      <HolidayBanner settings={settings} />
+
       {/* Header */}
       <header className="header">
         <div className="container">
@@ -137,7 +144,31 @@ export default function Home() {
                       <div className="artwork-details">
                         <span className="artwork-price">${piece.price} AUD</span>
                       </div>
-                      <ArtworkActions artwork={piece} />
+                      
+                      {/* Show normal actions if NOT in holiday mode, or show holiday message if in holiday mode */}
+                      {!isHolidayMode ? (
+                        <ArtworkActions artwork={piece} />
+                      ) : (
+                        piece.available && (
+                          <div style={{
+                            padding: '12px',
+                            backgroundColor: '#FFF4E6',
+                            border: '1px solid #F4A460',
+                            borderRadius: '8px',
+                            textAlign: 'center',
+                            marginTop: '12px'
+                          }}>
+                            <p style={{
+                              fontSize: '14px',
+                              color: '#8B4513',
+                              fontStyle: 'italic',
+                              margin: 0
+                            }}>
+                              💬 Contact me when I return to purchase
+                            </p>
+                          </div>
+                        )
+                      )}
                     </div>
                   </article>
                 ))
@@ -190,7 +221,26 @@ export default function Home() {
                 <p>{pageContent.contact.shippingText}</p>
               </div>
               
-              <ContactForm />
+              {/* Show contact form normally or disabled message in holiday mode */}
+              {!isHolidayMode ? (
+                <ContactForm />
+              ) : (
+                <div style={{
+                  padding: '30px',
+                  backgroundColor: '#FFF4E6',
+                  border: '2px solid #F4A460',
+                  borderRadius: '8px',
+                  textAlign: 'center'
+                }}>
+                  <p style={{ fontSize: '18px', color: '#8B4513', marginBottom: '12px' }}>
+                    📧 Contact form temporarily unavailable
+                  </p>
+                  <p style={{ fontSize: '14px', color: '#654321', lineHeight: '1.6', margin: 0 }}>
+                    You can still reach me via phone or email listed on the left. 
+                    I'll respond to all messages when I return!
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </section>

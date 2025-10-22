@@ -66,6 +66,16 @@ collections:
           - {label: "About Text", name: "about", widget: "text"}
           - {label: "Hero Headline", name: "heroHeadline", widget: "string"}
           - {label: "Hero Subtext", name: "heroSubtext", widget: "string"}
+          
+          - label: "Holiday Mode"
+            name: "holidayMode"
+            widget: "object"
+            collapsed: true
+            hint: "Enable this when you're away - shows a friendly message to customers"
+            fields:
+              - {label: "Enable Holiday Mode", name: "enabled", widget: "boolean", default: false, hint: "Turn ON when going on holidays/leave"}
+              - {label: "Return Date", name: "returnDate", widget: "date", required: false, hint: "When will you be back? Leave empty for 'until further notice'"}
+              - {label: "Custom Message", name: "message", widget: "text", required: false, default: "G'day! I'm currently away on leave. The gallery is still here for you to browse, but I'm not taking new orders at the moment.", hint: "Leave empty to use the default message"}
       
       - name: "content"
         label: "Page Content"

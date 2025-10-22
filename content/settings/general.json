@@ -7,5 +7,10 @@
   "heroSubtext": "Handcrafted artwork celebrating the spirit of the Australian bush, Ned Kelly, and our unique cultural heritage.",
   "location": "Earlville, Queensland, Australia",
   "title": "Cor-Art",
-  "email": "gene.pratt@hotmail.com"
+  "email": "gene.pratt@hotmail.com",
+  "holidayMode": {
+    "enabled": false,
+    "returnDate": "",
+    "message": "G'day! I'm currently away on leave. The gallery is still here for you to browse, but I'm not taking new orders at the moment."
+  }
 }
