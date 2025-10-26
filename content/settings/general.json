@@ -8,7 +8,7 @@
   "location": "Earlville, Queensland, Australia",
   "title": "Cor-Art",
   "holidayMode": {
-    "enabled": true,
+    "enabled": false,
     "returnDate": "11-11-2025",
     "message": "G'day! I'm currently away on leave. The gallery is still here for you to browse, but I'm not taking new orders at the moment."
   },
