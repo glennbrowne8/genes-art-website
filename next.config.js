@@ -5,6 +5,14 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  async rewrites() {
+    return [
+      {
+        source: '/.netlify/functions/create-checkout-session',
+        destination: '/api/create-checkout-session',
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
