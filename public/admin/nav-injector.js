@@ -119,4 +119,46 @@
   window.addEventListener('hashchange', checkUrl);
   setInterval(checkUrl, 1000);
 
+  // ---------------------------------------------------------
+  // PUBLISH BUTTON FIXER
+  // Makes the main "Publish" button immediately trigger "Publish now"
+  // instead of just opening the menu.
+  // ---------------------------------------------------------
+  setInterval(function() {
+    // Find the main Publish button (exact text match to avoid confusing with "Publishing..." or "Published")
+    // We look for buttons in the header area (usually distinct from the arrow)
+    const buttons = Array.from(document.querySelectorAll('button'));
+    const pubBtn = buttons.find(b => b.textContent.trim() === 'Publish');
+
+    if (pubBtn && !pubBtn.dataset.fixed) {
+      console.log('Publish Button Fix applied');
+      pubBtn.dataset.fixed = 'true';
+      
+      pubBtn.addEventListener('click', function(e) {
+        // Only trigger if we clicked the main button, not if the event bubbled from somewhere else
+        // (though usually these are distinct)
+        
+        console.log('Publish clicked - attempting auto-confirm');
+        
+        // The default action opens the menu. We let that happen.
+        // Then we hunt for "Publish now".
+        setTimeout(() => {
+          // Look for the menu item. It's usually in a portal at the end of the body.
+          const menuItems = Array.from(document.querySelectorAll('[role="menuitem"], li, button, span'));
+          const publishNowBtn = menuItems.find(el => el.textContent.trim().toLowerCase() === 'publish now');
+
+          if (publishNowBtn) {
+            console.log('Found "Publish now" - clicking it');
+            publishNowBtn.click();
+            
+            // Optional: Hide the menu explicitly if we can find it, to reduce flash?
+            // The click usually closes it anyway.
+          } else {
+            console.log('Could not find "Publish now" option');
+          }
+        }, 50); // Small delay to allow React to render the dropdown
+      });
+    }
+  }, 1000);
+
 })();
