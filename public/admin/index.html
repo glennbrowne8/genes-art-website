@@ -4,10 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
+    <link rel="stylesheet" href="admin.css" />
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <!-- Include the script that builds the page and powers Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+    <!-- Script to hide Sync Scrolling button -->
+    <script>
+      // Watch for the scroll sync button and hide it
+      const observer = new MutationObserver(() => {
+        // Try to find by text content or class
+        const buttons = document.querySelectorAll('button, div[role="button"]');
+        buttons.forEach(btn => {
+          if (btn.textContent.includes('Sync scrolling') || 
+              (btn.title && btn.title.includes('Sync scrolling')) ||
+              (btn.className && typeof btn.className === 'string' && btn.className.includes('ScrollSync'))) {
+            btn.style.display = 'none';
+          }
+        });
+      });
+      
+      observer.observe(document.body, { childList: true, subtree: true });
+    </script>
+    
+    <!-- Floating Navigation Bar Injector -->
+    <script src="nav-injector.js"></script>
   </body>
 </html>
