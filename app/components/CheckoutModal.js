@@ -4,42 +4,50 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 
-const SHIPPING_OPTIONS = [
-  {
-    id: 'pickup',
-    label: '🏠 Pickup (Earlville, QLD)',
-    description: 'Free pickup from our studio. Gene will contact you to arrange a time.',
-    price: 0,
-    priceLabel: 'FREE'
-  },
-  {
-    id: 'local',
-    label: '🚗 Local Delivery',
-    description: 'Within 50km of Cairns. Gene will deliver to your door.',
-    price: 1000, // $10.00 in cents
-    priceLabel: '$10.00'
-  },
-  {
-    id: 'standard',
-    label: '📦 Standard Shipping',
-    description: 'Australia Post (5-7 business days). Tracking included.',
-    price: 2000, // $20.00 in cents
-    priceLabel: '$20.00'
-  },
-  {
-    id: 'express',
-    label: '📦 Express Shipping',
-    description: 'Australia Post Express (2-3 business days). Priority handling.',
-    price: 3500, // $35.00 in cents
-    priceLabel: '$35.00'
-  }
-]
-
-function CheckoutModalContent({ artwork, onClose }) {
+function CheckoutModalContent({ artwork, settings, onClose }) {
   const [selectedShipping, setSelectedShipping] = useState('pickup')
   const [includeInsurance, setIncludeInsurance] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [error, setError] = useState(null)
+
+  // Construct Shipping Options from Settings
+  // Use defaults if settings are missing (fallback safety)
+  const shippingRates = settings?.shipping || {
+    localPrice: 10,
+    standardPrice: 20,
+    expressPrice: 35
+  }
+
+  const SHIPPING_OPTIONS = [
+    {
+      id: 'pickup',
+      label: '🏠 Pickup (Earlville, QLD)',
+      description: 'Free pickup from our studio. Gene will contact you to arrange a time.',
+      price: 0,
+      priceLabel: 'FREE'
+    },
+    {
+      id: 'local',
+      label: '🚗 Local Delivery',
+      description: 'Within 50km of Cairns. Gene will deliver to your door.',
+      price: (shippingRates.localPrice || 10) * 100, // Convert to cents
+      priceLabel: `$${(shippingRates.localPrice || 10).toFixed(2)}`
+    },
+    {
+      id: 'standard',
+      label: '📦 Standard Shipping',
+      description: 'Australia Post (5-7 business days). Tracking included.',
+      price: (shippingRates.standardPrice || 20) * 100,
+      priceLabel: `$${(shippingRates.standardPrice || 20).toFixed(2)}`
+    },
+    {
+      id: 'express',
+      label: '📦 Express Shipping',
+      description: 'Australia Post Express (2-3 business days). Priority handling.',
+      price: (shippingRates.expressPrice || 35) * 100,
+      priceLabel: `$${(shippingRates.expressPrice || 35).toFixed(2)}`
+    }
+  ]
 
   const selectedOption = SHIPPING_OPTIONS.find(opt => opt.id === selectedShipping)
   const artworkPrice = Math.round(artwork.price * 100) // Convert to cents
@@ -243,7 +251,7 @@ function CheckoutModalContent({ artwork, onClose }) {
   )
 }
 
-export default function CheckoutModal({ artwork, onClose }) {
+export default function CheckoutModal({ artwork, settings, onClose }) {
   const [mounted, setMounted] = useState(false)
   const [portalTarget, setPortalTarget] = useState(null)
 
@@ -258,7 +266,7 @@ export default function CheckoutModal({ artwork, onClose }) {
 
   // Render modal using portal to document.body
   return createPortal(
-    <CheckoutModalContent artwork={artwork} onClose={onClose} />,
+    <CheckoutModalContent artwork={artwork} settings={settings} onClose={onClose} />,
     portalTarget
   )
 }

@@ -2,11 +2,13 @@
   "artistPhoto": "/images/uploads/gene-pratt.jpg",
   "about": "For more than two decades, I’ve been capturing the essence of the Australian bush and our cultural icons. My passion lies in celebrating the rugged beauty of our landscape and the legendary figures who shaped our nation’s character. From the iconic Ned Kelly to the vast expanses of the outback, each piece tells a story of our rich Australian heritage.",
   "phone": "+61 413 863 485",
-  "heroHeadline": "Authentic Australian Bush Art",
-  "artistName": "Gene Pratt",
-  "heroSubtext": "Handcrafted artwork celebrating the spirit of the Australian bush, our colourful characters and unique cultural heritage.",
-  "location": "Earlville, Queensland, Australia",
-  "title": "Cor-Art",
+  "heroHeadline": "Authentic Australian Art",
+  "heroSubtext": "Discover unique pieces inspired by the rugged beauty of the outback.",
+  "shipping": {
+    "localPrice": 10,
+    "standardPrice": 20,
+    "expressPrice": 35
+  },
   "holidayMode": {
     "enabled": false,
     "returnDate": "11-11-2025",

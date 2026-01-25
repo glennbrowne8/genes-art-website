@@ -90,9 +90,12 @@
 
     navBar.innerHTML = `
       ${createLink(prevItem, 'Newer', '←')}
-      <span style="border-left:1px solid #555; border-right:1px solid #555; padding:0 15px; color:#aaa; font-variant-numeric: tabular-nums;">
-        ${idx + 1} / ${artworkList.length}
-      </span>
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <span style="border-left:1px solid #555; border-right:1px solid #555; padding:0 15px; color:#aaa; font-variant-numeric: tabular-nums;">
+          ${idx + 1} / ${artworkList.length}
+        </span>
+        <span style="font-size:10px; color:#F4A460; margin-top:2px; font-weight:bold;">Mark SOLD items!</span>
+      </div>
       ${createLink(nextItem, 'Older', '→')}
     `;
 

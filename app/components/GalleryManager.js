@@ -135,7 +135,7 @@ export default function GalleryManager({ artwork, categories, pageContent, setti
                     </div>
                     
                     {!isHolidayMode ? (
-                      <ArtworkActions artwork={piece} />
+                      <ArtworkActions artwork={piece} settings={settings} />
                     ) : (
                       piece.available && (
                         <div style={{
