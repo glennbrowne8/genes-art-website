@@ -2,9 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Image from 'next/image'
-import ArtworkActions from './components/ArtworkActions'
+import GalleryManager from './components/GalleryManager'
 import ContactForm from './components/ContactForm'
-import ImageZoom from './components/ImageZoom'
 import HolidayBanner from './components/HolidayBanner'
 
 // Function to get site settings
@@ -44,6 +43,31 @@ function getPageContent() {
   }
 }
 
+// Function to get all categories
+function getCategories() {
+  const categoriesDir = path.join(process.cwd(), 'content/categories')
+  
+  if (!fs.existsSync(categoriesDir)) {
+    return []
+  }
+  
+  const files = fs.readdirSync(categoriesDir)
+  
+  const categories = files
+    .filter(filename => filename.endsWith('.md'))
+    .map(filename => {
+      const filePath = path.join(categoriesDir, filename)
+      const fileContent = fs.readFileSync(filePath, 'utf-8')
+      const { data } = matter(fileContent)
+      
+      return data
+    })
+    .sort((a, b) => (a.order || 99) - (b.order || 99)) // Sort by order, default to 99 if missing
+    .filter(cat => cat.active !== false) // Only show active categories
+  
+  return categories
+}
+
 // Function to get all artwork
 function getArtwork() {
   const artworkDir = path.join(process.cwd(), 'content/artwork')
@@ -75,6 +99,7 @@ export default function Home() {
   const settings = getSettings()
   const pageContent = getPageContent()
   const artwork = getArtwork()
+  const categories = getCategories()
   
   // Check if holiday mode is enabled
   const isHolidayMode = settings.holidayMode?.enabled || false
@@ -116,64 +141,13 @@ export default function Home() {
           <div className="container">
             <h2 className="section-title">{pageContent.gallery.title}</h2>
             
-            <div className="gallery-grid">
-              {artwork.length === 0 ? (
-                <p style={{ textAlign: 'center', gridColumn: '1 / -1', fontSize: '1.2rem', color: '#666' }}>
-                  {pageContent.gallery.emptyMessage}
-                </p>
-              ) : (
-                artwork.map((piece, index) => (
-                  <article key={index} className="artwork-card">
-                    <div className="artwork-image">
-                      {piece.image ? (
-                        <ImageZoom src={piece.image} alt={piece.title} />
-                      ) : (
-                        <div className="placeholder-image">No Image</div>
-                      )}
-                    </div>
-                    <div className="artwork-content">
-                      <div className="artwork-category">{piece.category}</div>
-                      <h3 className="artwork-title">{piece.title}</h3>
-                      <p className="artwork-description">{piece.description}</p>
-                      {piece.dimensions && (
-                        <p className="artwork-dimensions">Dimensions: {piece.dimensions}</p>
-                      )}
-                      {piece.weight && (
-                        <p className="artwork-weight">Weight: {piece.weight} kg</p>
-                      )}
-                      <div className="artwork-details">
-                        <span className="artwork-price">${piece.price} AUD</span>
-                      </div>
-                      
-                      {/* Show normal actions if NOT in holiday mode, or show holiday message if in holiday mode */}
-                      {!isHolidayMode ? (
-                        <ArtworkActions artwork={piece} />
-                      ) : (
-                        piece.available && (
-                          <div style={{
-                            padding: '12px',
-                            backgroundColor: '#FFF4E6',
-                            border: '1px solid #F4A460',
-                            borderRadius: '8px',
-                            textAlign: 'center',
-                            marginTop: '12px'
-                          }}>
-                            <p style={{
-                              fontSize: '14px',
-                              color: '#8B4513',
-                              fontStyle: 'italic',
-                              margin: 0
-                            }}>
-                              💬 Contact me when I return to purchase
-                            </p>
-                          </div>
-                        )
-                      )}
-                    </div>
-                  </article>
-                ))
-              )}
-            </div>
+            {/* Interactive Gallery Manager */}
+            <GalleryManager 
+              artwork={artwork} 
+              categories={categories}
+              pageContent={pageContent}
+              settings={settings}
+            />
           </div>
         </section>
 

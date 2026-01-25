@@ -272,6 +272,65 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Category Bubbles & Manager */
+.category-bubbles-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  position: sticky;
+  top: 80px; /* Below header */
+  z-index: 90;
+  background: linear-gradient(to bottom, var(--color-bg) 80%, rgba(248, 245, 241, 0));
+  padding: 1rem 0;
+}
+
+.category-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.bubble {
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  border: 2px solid var(--color-primary);
+  background-color: transparent;
+  color: var(--color-primary);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.bubble:hover {
+  background-color: rgba(139, 69, 19, 0.1);
+  transform: translateY(-2px);
+}
+
+.bubble.active {
+  background-color: var(--color-primary);
+  color: white;
+  box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
+}
+
+/* Category Card Specifics */
+.category-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid transparent;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-accent);
+}
+
+.category-card .artwork-image {
+  height: 300px; /* Slightly taller for category previews */
+}
+
+
 /* Contact Section */
 .contact {
   background-color: white;
