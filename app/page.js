@@ -225,7 +225,7 @@ export default function Home() {
         <div className="container">
           <p>&copy; 2025 {settings.title}. {pageContent.footer.text}</p>
           <p style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
-            Returns accepted within 7 days for damaged/defective items. <a href="/returns-refunds" style={{ color: 'inherit', textDecoration: 'underline' }}>View Full Returns Policy</a>
+            Returns accepted within 7 days for damaged/defective items. <a href="/returns-refunds" style={{ color: 'inherit', textDecoration: 'underline' }}>View Full Returns Policy</a> | <a href="/privacy" style={{ color: 'inherit', textDecoration: 'underline' }}>Privacy Policy</a>
           </p>
         </div>
       </footer>
