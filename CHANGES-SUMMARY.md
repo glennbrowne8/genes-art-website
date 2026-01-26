@@ -85,3 +85,23 @@ After deploying, have Gene try this:
 ---
 
 **All text on the website is now manageable through the admin panel!** 🎉
+
+---
+
+# 📅 January 26, 2026 - Final Polish & E-commerce Launch
+
+## Major Features Added
+- **Stripe Payments**: Full checkout flow with Shipping & Insurance options.
+- **Manual "Sold" Workflow**: Documented process for Gene to manage inventory.
+- **Legal Compliance**: Added Privacy Policy (`/privacy`) and Returns Policy (`/returns-refunds`).
+- **Custom 404 Page**: Friendly error page.
+- **Success Page**: Now displays dynamic contact info from CMS settings.
+- **Dynamic Shipping Labels**: "Pickup" and "Local Delivery" text is now editable in CMS.
+
+## Documentation Created
+- `GENE-USER-MANUAL.md`: Simplified guide for the artist.
+- `DEVELOPER-MANUAL.md`: Technical reference.
+- `STRIPE-EMAIL-SETUP.md`: Guide for configuring email receipts.
+
+## Status
+**Project is COMPLETE.** The site is live, payments are working, and documentation is handed over.
