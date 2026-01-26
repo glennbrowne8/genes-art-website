@@ -72,7 +72,9 @@ collections:
             collapsed: true
             hint: "Set the prices for different delivery options (in dollars)"
             fields:
+              - {label: "Pickup Label", name: "pickupLabel", widget: "string", default: "🏠 Pickup (Earlville, QLD)", hint: "Text shown for the free pickup option"}
               - {label: "Local Delivery Price ($)", name: "localPrice", widget: "number", default: 10, min: 0}
+              - {label: "Local Delivery Text", name: "localText", widget: "string", default: "🚗 Local Delivery (within 50km of Cairns)", hint: "Description for local delivery"}
               - {label: "Standard Shipping Price ($)", name: "standardPrice", widget: "number", default: 20, min: 0}
               - {label: "Express Shipping Price ($)", name: "expressPrice", widget: "number", default: 35, min: 0}
 

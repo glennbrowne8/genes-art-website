@@ -13,7 +13,9 @@ function CheckoutModalContent({ artwork, settings, onClose }) {
   // Construct Shipping Options from Settings
   // Use defaults if settings are missing (fallback safety)
   const shippingRates = settings?.shipping || {
+    pickupLabel: '🏠 Pickup (Earlville, QLD)',
     localPrice: 10,
+    localText: '🚗 Local Delivery (within 50km of Cairns)',
     standardPrice: 20,
     expressPrice: 35
   }
@@ -21,15 +23,15 @@ function CheckoutModalContent({ artwork, settings, onClose }) {
   const SHIPPING_OPTIONS = [
     {
       id: 'pickup',
-      label: '🏠 Pickup (Earlville, QLD)',
+      label: shippingRates.pickupLabel || '🏠 Pickup (Earlville, QLD)',
       description: 'Free pickup from our studio. Gene will contact you to arrange a time.',
       price: 0,
       priceLabel: 'FREE'
     },
     {
       id: 'local',
-      label: '🚗 Local Delivery',
-      description: 'Within 50km of Cairns. Gene will deliver to your door.',
+      label: shippingRates.localText || '🚗 Local Delivery',
+      description: 'Gene will deliver to your door.',
       price: (shippingRates.localPrice || 10) * 100, // Convert to cents
       priceLabel: `$${(shippingRates.localPrice || 10).toFixed(2)}`
     },

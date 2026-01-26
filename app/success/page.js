@@ -1,6 +1,23 @@
 import Link from 'next/link'
+import fs from 'fs'
+import path from 'path'
+
+function getSettings() {
+  try {
+    const settingsPath = path.join(process.cwd(), 'content/settings/general.json')
+    const settingsData = fs.readFileSync(settingsPath, 'utf-8')
+    return JSON.parse(settingsData)
+  } catch (error) {
+    return {
+      email: 'gene.pratt@hotmail.com',
+      phone: '+61 413 863 485'
+    }
+  }
+}
 
 export default function SuccessPage() {
+  const settings = getSettings()
+
   return (
     <div className="success-page">
       <div className="container">
@@ -37,8 +54,8 @@ export default function SuccessPage() {
               Feel free to contact Gene directly:
             </p>
             <p>
-              <strong>Email:</strong> gene@example.com<br />
-              <strong>Phone:</strong> (07) XXXX XXXX
+              <strong>Email:</strong> {settings.email}<br />
+              <strong>Phone:</strong> {settings.phone}
             </p>
           </div>
 

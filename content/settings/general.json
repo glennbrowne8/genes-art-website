@@ -5,7 +5,9 @@
   "heroHeadline": "Authentic Australian Art",
   "heroSubtext": "Discover unique pieces inspired by the rugged beauty of the outback.",
   "shipping": {
+    "pickupLabel": "🏠 Pickup (Earlville, QLD)",
     "localPrice": 10,
+    "localText": "🚗 Local Delivery (within 50km of Cairns)",
     "standardPrice": 20,
     "expressPrice": 35
   },
