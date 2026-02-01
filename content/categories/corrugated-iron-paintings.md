@@ -1,5 +1,5 @@
 ---
-name: Cor-Art
+name: Corrugated Iron Artwork
 description: Original paintings on authentic Australian corrugated iron, perfect
   for indoor and outdoor display.
 order: 1
