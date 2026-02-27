@@ -5,6 +5,7 @@ import Image from 'next/image'
 import GalleryManager from './components/GalleryManager'
 import ContactForm from './components/ContactForm'
 import HolidayBanner from './components/HolidayBanner'
+import ContactShield from './components/ContactShield'
 
 // Function to get site settings
 function getSettings() {
@@ -24,8 +25,6 @@ function getPageContent() {
     return {
       contact: {
         title: "Get In Touch",
-        commissionHeading: "Commission Work",
-        commissionText: "Custom pieces available! I love creating personalized artwork that captures your vision of Australian heritage. Contact me to discuss your ideas.",
         shippingHeading: "Delivery & Shipping",
         shippingText: "Local delivery available. Interstate shipping can be arranged for all artwork. Contact me for a quote."
       },
@@ -184,12 +183,9 @@ export default function Home() {
               <div className="contact-info">
                 <h3>Contact Information</h3>
                 <p><strong>Artist:</strong> {settings.artistName}</p>
-                <p><strong>Phone:</strong> {settings.phone}</p>
-                <p><strong>Email:</strong> {settings.email}</p>
+                <p><ContactShield value={settings.phone} type="phone" label="Phone" /></p>
+                <p><ContactShield value={settings.email} type="email" label="Email" /></p>
                 <p><strong>Location:</strong> {settings.location}</p>
-                
-                <h3 style={{ marginTop: '2rem' }}>{pageContent.contact.commissionHeading}</h3>
-                <p>{pageContent.contact.commissionText}</p>
                 
                 <h3 style={{ marginTop: '2rem' }}>{pageContent.contact.shippingHeading}</h3>
                 <p>{pageContent.contact.shippingText}</p>

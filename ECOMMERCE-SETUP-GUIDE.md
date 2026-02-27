@@ -536,7 +536,7 @@ Recent Payments:
 ```
 Customer: John Smith
 Email: john@example.com
-Phone: +61 412 345 678
+Phone: 0412 345 678
 Amount: $470.00 AUD
 Fee: $13.93
 Net: $456.07

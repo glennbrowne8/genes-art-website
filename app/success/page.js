@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import fs from 'fs'
 import path from 'path'
+import ContactShield from '../components/ContactShield'
 
 function getSettings() {
   try {
@@ -10,7 +11,7 @@ function getSettings() {
   } catch (error) {
     return {
       email: 'gene.pratt@hotmail.com',
-      phone: '+61 413 863 485'
+      phone: '0413 863 485'
     }
   }
 }
@@ -53,10 +54,11 @@ export default function SuccessPage() {
             <p>
               Feel free to contact Gene directly:
             </p>
-            <p>
-              <strong>Email:</strong> {settings.email}<br />
-              <strong>Phone:</strong> {settings.phone}
-            </p>
+            <div style={{ marginTop: '0.5rem' }}>
+              <ContactShield value={settings.email} type="email" label="Email" />
+              <br />
+              <ContactShield value={settings.phone} type="phone" label="Phone" />
+            </div>
           </div>
 
           <div className="success-actions">

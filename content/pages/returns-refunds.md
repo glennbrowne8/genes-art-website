@@ -24,7 +24,7 @@ All items are handmade with care in Queensland, Australia. We stand behind the q
 Contact us within **7 days** of receiving your item:
 
 **Email:** gene.pratt@hotmail.com\
-**Phone:** +61 413 863 485
+**Phone:** 0413 863 485
 
 Please provide:
 
@@ -47,7 +47,7 @@ This policy doesn't limit your rights under Australian Consumer Law. All items c
 **Questions?** Contact us anytime:
 
 * Email: gene.pratt@hotmail.com
-* Phone: +61 413 863 485
+* Phone: 0413 863 485
 
 - - -
 

@@ -1,0 +1,23 @@
+-Fix mobile issue with navigation bar for different categories. (DONE)
+-Remove All Categories (DONE - DECIDED TO KEEP)
+-27 - Watercolour / Pen and Wash
+-26 - Watercolour / Pen and Wash
+-25 - Watercolour / Pen and Wash
+-22, 24, 23, - Watercolour / Pen and Wash
+-*Test Send a message form* (DONE)
+-categories have an id so that when category name changes, the items remain in that category.  (separate category name from id)
+-Remove Commission work on main page. (DONE)
+-update Gene's Photo. (DONE)
+-Find out how refunds work.
+
+
+
+
+
+
+
+
+
+
+ 
+

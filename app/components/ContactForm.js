@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 export default function ContactForm() {
   const [formState, setFormState] = useState({
+    'form-name': 'contact',
     name: '',
     email: '',
     phone: '',
@@ -35,7 +36,13 @@ export default function ContactForm() {
     })
       .then(() => {
         setSubmitStatus('success')
-        setFormState({ name: '', email: '', phone: '', message: '' })
+        setFormState({ 
+          'form-name': 'contact',
+          name: '', 
+          email: '', 
+          phone: '', 
+          message: '' 
+        })
         setIsSubmitting(false)
       })
       .catch((error) => {
@@ -69,9 +76,14 @@ export default function ContactForm() {
         name="contact" 
         method="POST" 
         onSubmit={handleSubmit}
+        data-netlify="true"
+        netlify-honeypot="bot-field"
       >
         {/* Hidden fields for Netlify */}
         <input type="hidden" name="form-name" value="contact" />
+        <p className="hidden" style={{ display: 'none' }}>
+          <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+        </p>
 
         <div className="form-group">
           <label htmlFor="name">Name *</label>

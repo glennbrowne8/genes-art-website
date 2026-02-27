@@ -9,21 +9,24 @@ export default function GalleryManager({ artwork, categories, pageContent, setti
   const [selectedCategory, setSelectedCategory] = useState('All')
   const isHolidayMode = settings.holidayMode?.enabled || false
 
-  // Filter artwork based on selection
+  // Filter artwork based on selection (using ID)
   const filteredArtwork = selectedCategory === 'All' 
     ? artwork 
     : artwork.filter(piece => piece.category === selectedCategory)
 
-  // Get the display image for a category (first available artwork or just first artwork)
-  const getCategoryCover = (categoryName) => {
-    const categoryPieces = artwork.filter(p => p.category === categoryName)
+  // Find the current category object for its display name
+  const currentCategory = categories.find(cat => cat.id === selectedCategory)
+
+  // Get the display image for a category (using ID)
+  const getCategoryCover = (categoryId) => {
+    const categoryPieces = artwork.filter(p => p.category === categoryId)
     // Try to find an available one first, otherwise just the first one
     return categoryPieces.find(p => p.available) || categoryPieces[0]
   }
 
   // Handle Category Click from Bubble or Card
-  const handleCategorySelect = (categoryName) => {
-    setSelectedCategory(categoryName)
+  const handleCategorySelect = (categoryId) => {
+    setSelectedCategory(categoryId)
     // Optional: Scroll to top of gallery
     const gallerySection = document.getElementById('gallery')
     if (gallerySection) {
@@ -33,42 +36,41 @@ export default function GalleryManager({ artwork, categories, pageContent, setti
 
   return (
     <div className="gallery-manager">
-      {/* Category Bubbles Navigation */}
-      <div className="category-bubbles-container">
-        <div className="category-bubbles">
-          <button 
-            className={`bubble ${selectedCategory === 'All' ? 'active' : ''}`}
-            onClick={() => handleCategorySelect('All')}
-          >
-            All Categories
-          </button>
-          {categories.map((cat, index) => (
+      {/* Category Bubbles Navigation - ONLY SHOW WHEN A CATEGORY IS SELECTED */}
+      {selectedCategory !== 'All' && (
+        <div className="category-bubbles-container">
+          <div className="category-bubbles">
             <button 
-              key={index}
-              className={`bubble ${selectedCategory === cat.name ? 'active' : ''}`}
-              onClick={() => handleCategorySelect(cat.name)}
+              className={`bubble ${selectedCategory === 'All' ? 'active' : ''}`}
+              onClick={() => handleCategorySelect('All')}
             >
-              {cat.name}
+              ← All Categories
             </button>
-          ))}
+            {categories.map((cat, index) => (
+              <button 
+                key={index}
+                className={`bubble ${selectedCategory === cat.id ? 'active' : ''}`}
+                onClick={() => handleCategorySelect(cat.id)}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Main Content Area */}
       {selectedCategory === 'All' ? (
-        /* VIEW 1: CATEGORY CARDS (The "Example" view) */
+        /* VIEW 1: CATEGORY CARDS (Initial Home View) */
         <div className="gallery-grid">
           {categories.map((cat, index) => {
-            const coverArt = getCategoryCover(cat.name)
-            
-            // Skip categories with no artwork? Or show placeholder?
-            // Let's show them but with a placeholder if needed
+            const coverArt = getCategoryCover(cat.id)
             
             return (
               <div 
                 key={index} 
                 className="artwork-card category-card"
-                onClick={() => handleCategorySelect(cat.name)}
+                onClick={() => handleCategorySelect(cat.id)}
                 style={{ cursor: 'pointer' }}
               >
                 <div className="artwork-image">
@@ -98,11 +100,21 @@ export default function GalleryManager({ artwork, categories, pageContent, setti
       ) : (
         /* VIEW 2: ARTWORK GRID (Specific Category) */
         <div>
-          <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <h3 style={{ fontSize: '1.5rem', color: '#8B4513' }}>
-              Viewing: {selectedCategory}
-            </h3>
-            <span style={{ color: '#666' }}>({filteredArtwork.length} items)</span>
+          <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <h3 style={{ fontSize: '1.5rem', color: '#8B4513' }}>
+                {currentCategory?.name || selectedCategory}
+              </h3>
+              <span style={{ color: '#666' }}>({filteredArtwork.length} items)</span>
+            </div>
+            
+            <button 
+              className="btn-secondary" 
+              onClick={() => handleCategorySelect('All')}
+              style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}
+            >
+              ← Back to All Categories
+            </button>
           </div>
 
           <div className="gallery-grid">
@@ -111,50 +123,55 @@ export default function GalleryManager({ artwork, categories, pageContent, setti
                 No artwork found in this category.
               </p>
             ) : (
-              filteredArtwork.map((piece, index) => (
-                <article key={index} className="artwork-card">
-                  <div className="artwork-image">
-                    {piece.image ? (
-                      <ImageZoom src={piece.image} alt={piece.title} />
-                    ) : (
-                      <div className="placeholder-image">No Image</div>
-                    )}
-                  </div>
-                  <div className="artwork-content">
-                    <div className="artwork-category">{piece.category}</div>
-                    <h3 className="artwork-title">{piece.title}</h3>
-                    <p className="artwork-description">{piece.description}</p>
-                    {piece.dimensions && (
-                      <p className="artwork-dimensions">Dimensions: {piece.dimensions}</p>
-                    )}
-                    {piece.weight && (
-                      <p className="artwork-weight">Weight: {piece.weight} kg</p>
-                    )}
-                    <div className="artwork-details">
-                      <span className="artwork-price">${piece.price} AUD</span>
+              filteredArtwork.map((piece, index) => {
+                // Find category name for display
+                const pieceCategory = categories.find(c => c.id === piece.category)
+                
+                return (
+                  <article key={index} className="artwork-card">
+                    <div className="artwork-image">
+                      {piece.image ? (
+                        <ImageZoom src={piece.image} alt={piece.title} />
+                      ) : (
+                        <div className="placeholder-image">No Image</div>
+                      )}
                     </div>
-                    
-                    {!isHolidayMode ? (
-                      <ArtworkActions artwork={piece} settings={settings} />
-                    ) : (
-                      piece.available && (
-                        <div style={{
-                          padding: '12px',
-                          backgroundColor: '#FFF4E6',
-                          border: '1px solid #F4A460',
-                          borderRadius: '8px',
-                          textAlign: 'center',
-                          marginTop: '12px'
-                        }}>
-                          <p style={{ fontSize: '14px', color: '#8B4513', fontStyle: 'italic', margin: 0 }}>
-                            💬 Contact me when I return to purchase
-                          </p>
-                        </div>
-                      )
-                    )}
-                  </div>
-                </article>
-              ))
+                    <div className="artwork-content">
+                      <div className="artwork-category">{pieceCategory?.name || piece.category}</div>
+                      <h3 className="artwork-title">{piece.title}</h3>
+                      <p className="artwork-description">{piece.description}</p>
+                      {piece.dimensions && (
+                        <p className="artwork-dimensions">Dimensions: {piece.dimensions}</p>
+                      )}
+                      {piece.weight && (
+                        <p className="artwork-weight">Weight: {piece.weight} kg</p>
+                      )}
+                      <div className="artwork-details">
+                        <span className="artwork-price">${piece.price} AUD</span>
+                      </div>
+                      
+                      {!isHolidayMode ? (
+                        <ArtworkActions artwork={piece} settings={settings} />
+                      ) : (
+                        piece.available && (
+                          <div style={{
+                            padding: '12px',
+                            backgroundColor: '#FFF4E6',
+                            border: '1px solid #F4A460',
+                            borderRadius: '8px',
+                            textAlign: 'center',
+                            marginTop: '12px'
+                          }}>
+                            <p style={{ fontSize: '14px', color: '#8B4513', fontStyle: 'italic', margin: 0 }}>
+                              💬 Contact me when I return to purchase
+                            </p>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </article>
+                )
+              })
             )}
           </div>
         </div>

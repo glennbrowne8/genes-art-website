@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
+import ClientPolicyContent from '../components/ClientPolicyContent'
 
 // Function to get site settings
 function getSettings() {
@@ -65,34 +66,21 @@ export default function ReturnsPage() {
         <section className="section">
           <div className="container">
             <div className="policy-content">
-              <h1 style={{ fontSize: '2.5rem', marginBottom: '2rem', color: 'var(--primary-color)' }}>
+              <h1 style={{ fontSize: '2.5rem', marginBottom: '2rem', color: 'var(--color-primary)' }}>
                 {policy.title}
               </h1>
-              <div 
-                className="policy-text"
-                dangerouslySetInnerHTML={{ __html: policy.content }}
-                style={{
-                  maxWidth: '900px',
-                  margin: '0 auto',
-                  lineHeight: '1.8',
-                  fontSize: '1.1rem'
-                }}
-              />
+              
+              {/* Use client-side protected content component */}
+              <ClientPolicyContent content={policy.content} />
               
               {/* Back to Home Button */}
               <div style={{ textAlign: 'center', marginTop: '3rem' }}>
                 <a 
                   href="/#gallery" 
-                  className="button"
+                  className="btn-primary"
                   style={{
                     display: 'inline-block',
-                    padding: '1rem 2rem',
-                    backgroundColor: 'var(--primary-color)',
-                    color: 'white',
-                    textDecoration: 'none',
-                    borderRadius: '5px',
-                    fontWeight: 'bold',
-                    transition: 'background-color 0.3s'
+                    textDecoration: 'none'
                   }}
                 >
                   Back to Gallery

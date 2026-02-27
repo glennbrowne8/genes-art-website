@@ -1,9 +1,12 @@
 {
-  "artistPhoto": "/images/uploads/gene-pratt.jpg",
-  "about": "For more than two decades, I’ve been capturing the essence of the Australian bush and our cultural icons. My passion lies in celebrating the rugged beauty of our landscape and the legendary figures who shaped our nation’s character. From the iconic Ned Kelly to the vast expanses of the outback, each piece tells a story of our rich Australian heritage.",
-  "phone": "+61 413 863 485",
-  "heroHeadline": "Authentic Australian Art",
-  "heroSubtext": "Discover unique pieces inspired by the rugged beauty of the outback.",
+  "title": "Gene's Australian Heritage Art",
+  "artistName": "Gene Pratt",
+  "artistPhoto": "/images/uploads/gene.png",
+  "about": "For more than two decades, I’ve been capturing the diverse essence of Australia. My passion lies in celebrating our nation’s rich heritage, from the rugged beauty of the outback and the characters of our folklore to the vibrant landscapes and cultural icons that define us. Each piece is a tribute to the authentic Australian spirit and the stories that shape our identity.",
+  "phone": "0413 863 485",
+  "location": "Cairns",
+  "heroHeadline": "Gene's Australian Heritage Art",
+  "heroSubtext": "Authentic artwork celebrating the landscapes, icons, and spirit of Australia.",
   "shipping": {
     "pickupLabel": "🏠 Pickup (Earlville, QLD)",
     "localPrice": 10,

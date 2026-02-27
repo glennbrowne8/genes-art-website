@@ -17,10 +17,12 @@ export default function RootLayout({ children }) {
         {/* Hidden form for Netlify Forms detection */}
         <form 
           name="contact" 
-          data-netlify="true" 
-          data-netlify-honeypot="bot-field" 
+          netlify="true" 
+          netlify-honeypot="bot-field" 
           hidden
         >
+          <input type="hidden" name="form-name" value="contact" />
+          <input type="text" name="bot-field" />
           <input type="text" name="name" />
           <input type="email" name="email" />
           <input type="tel" name="phone" />
